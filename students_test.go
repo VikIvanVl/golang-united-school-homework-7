@@ -121,3 +121,16 @@ func TestSet(t *testing.T) {
 		t.Errorf("Error. Set Error")
 	}
 }
+
+func TestLen(t *testing.T) {
+	var people People
+
+	peopleOne := Person{"1", "1", time.Time{}}
+
+	people = append(people, peopleOne)
+	len := people.Len()
+
+	if len != 1 {
+		t.Errorf("Error. Len")
+	}
+}
