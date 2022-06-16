@@ -85,9 +85,25 @@ func TestNew(t *testing.T) {
 }
 
 func TestRows(t *testing.T) {
+	matrix := &Matrix{2, 2, []int{4, 5, 6, 7}}
+	expects := [][]int{{4, 5}, {6, 7}}
+
+	actual := matrix.Rows()
+
+	if !reflect.DeepEqual(actual, expects) {
+		t.Errorf("Error. Rows Matrix")
+	}
 }
 
 func TestCols(t *testing.T) {
+	matrix := &Matrix{3, 3, []int{1, 10, 100, 2, 20, 200, 3, 30, 300}}
+	expects := [][]int{{1, 2, 3}, {10, 20, 30}, {100, 200, 300}}
+
+	actual := matrix.Cols()
+
+	if !reflect.DeepEqual(actual, expects) {
+		t.Errorf("Error. Cols Matrix")
+	}
 }
 
 func TestSet(t *testing.T) {
