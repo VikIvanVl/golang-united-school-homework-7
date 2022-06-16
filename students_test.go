@@ -26,11 +26,11 @@ func init() {
 func TestLess(t *testing.T) {
 	var people People
 
-	people = append(people, Person{"1", "1", time.Time{}})
-	people = append(people, Person{"1", "1", time.Time{}.Add(5 * time.Minute)})
-	people = append(people, Person{"2", "1", time.Time{}})
-	people = append(people, Person{"2", "2", time.Time{}})
-	people = append(people, Person{"2", "2", time.Time{}})
+	people = append(people, Person{"Tom", "Tom", time.Time{}})
+	people = append(people, Person{"Tom", "Tom", time.Time{}.Add(5 * time.Minute)})
+	people = append(people, Person{"Jack", "Tom", time.Time{}})
+	people = append(people, Person{"Jack", "Jack", time.Time{}})
+	people = append(people, Person{"Jack", "Jack", time.Time{}})
 
 	if people.Less(0, 1) {
 		t.Errorf("Error. Less by Birthday")
@@ -107,4 +107,17 @@ func TestCols(t *testing.T) {
 }
 
 func TestSet(t *testing.T) {
+	matrix := &Matrix{3, 3, []int{1, 10, 100, 2, 20, 200, 3, 30, 300}}
+	expectsData := []int{1, 10, 100, 2, 20, 200, 3, 30, 9999999999}
+
+	actual := matrix.Set(2, 2, 9999999999)
+
+	if !actual || !reflect.DeepEqual(matrix.data, expectsData) {
+		t.Errorf("Error Set Matrix")
+	}
+
+	actual = matrix.Set(-1, 2, 9999999999)
+	if actual {
+		t.Errorf("Error. Set Error")
+	}
 }
