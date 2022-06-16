@@ -108,15 +108,15 @@ func TestCols(t *testing.T) {
 
 func TestSet(t *testing.T) {
 	matrix := &Matrix{3, 3, []int{1, 10, 100, 2, 20, 200, 3, 30, 300}}
-	expectsData := []int{1, 10, 100, 2, 20, 200, 3, 30, 9999999999}
+	expectsData := []int{1, 10, 100, 2, 20, 200, 3, 30, 10000000}
 
-	actual := matrix.Set(2, 2, 9999999999)
+	actual := matrix.Set(2, 2, 10000000)
 
 	if !actual || !reflect.DeepEqual(matrix.data, expectsData) {
 		t.Errorf("Error Set Matrix")
 	}
 
-	actual = matrix.Set(-1, 2, 9999999999)
+	actual = matrix.Set(-1, 2, 10000000)
 	if actual {
 		t.Errorf("Error. Set Error")
 	}
